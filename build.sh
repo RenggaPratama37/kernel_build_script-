@@ -44,6 +44,8 @@ if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
     fi
     cd "$kernel_directory"    
     export PATH="$HOME/toolchains/neutron-clang/bin:$PATH"
+else 
+    cd "$kernel_directory"       
 fi
 # Let's make a defconfig
 echo "importing defconfig"
