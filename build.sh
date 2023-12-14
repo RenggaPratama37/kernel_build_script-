@@ -3,6 +3,7 @@ echo "Kernel Script Compiler by Rengga Pratama"
 # exit build directory
 cd ..
 
+
 # Remove previous build if available
 if [ -d "$out"]; then
     echo "Deleting previous build"
@@ -11,7 +12,7 @@ fi
 # Let's enter the directory
 echo "Enter kernel_xiaomi_lime"   
 cd kernel_xiaomi_lime
-kernel_direktory="$(pwd)" 
+kernel_directory="$(pwd)" 
 
 # Compile Preparation
     cd "$HOME"
