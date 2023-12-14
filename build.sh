@@ -2,7 +2,7 @@
 echo "Kernel Script Compiler by Rengga Pratama"
 # exit build directory
 cd ..
-
+workspace_directory="$(pwd)"
 
 # Remove previous build if available
 if [ -d "$out"]; then
@@ -38,10 +38,10 @@ if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
 fi
 # Let's make a defconfig
 echo "importing defconfig"
-make O=/data/out ARCH=arm64 vendor/bengal-perf_defconfig
+make O=/$workspace_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
 
 # Let's start the build
-make -j$(nproc --all) O=/data/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+make -j$(nproc --all) O=/$workspace_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 
 
 
