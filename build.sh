@@ -21,6 +21,7 @@ kernel_directory="$(pwd)"
     sudo apt install zstd
     sudo apt install libarchive-tools
 # Option Neutron clang as a Custom Clang Compile
+read -p "Do you want to use Neutron Clang as compiler? (y/n):" response
 if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
     echo "Preparing Neutron Clang Environtment..."
     if [ -d "$HOME/toolchains/neutron-clang" ]; then
