@@ -16,10 +16,18 @@ kernel_directory="$(pwd)"
 
 # Compile Preparation
     cd "$HOME"
-    sudo apt install bc
-    sudo apt install flex
-    sudo apt install zstd
-    sudo apt install libarchive-tools
+# Checking packages
+    packages=("bc" "flex" "zstd" "libarchive-tools")
+    for package in "${packages[@]}" ; do
+        if dpkg -s "$package" &> /dev/null; then
+            echo "$package has been installed"
+        else
+            echo "installing $package"
+            sudo apt install -y "$package"
+        fi
+    done                 
+
+
 # Option Neutron clang as a Custom Clang Compile
 read -p "Do you want to use Neutron Clang as compiler? (y/n):" response
 if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
