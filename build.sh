@@ -29,6 +29,7 @@ kernel_directory="$(pwd)"
 
 
 # Option Neutron clang as a Custom Clang Compile
+while true; do
 read -p "Do you want to use Neutron Clang as compiler? (y/n):" response
 if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
     echo "Preparing Neutron Clang Environtment..."
@@ -44,9 +45,15 @@ if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
     fi
     cd "$kernel_directory"    
     export PATH="$HOME/toolchains/neutron-clang/bin:$PATH"
+    break
+elif [ "$response" == "n" ]  || [ "$response" == "N" ]; then
+    cd "$kernel_directory"
+    break
 else 
-    cd "$kernel_directory"       
+    echo "Invalid Option"            
 fi
+done
+
 # Let's make a defconfig
 echo "importing defconfig"
 make O=/$workspace_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
