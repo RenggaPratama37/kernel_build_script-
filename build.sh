@@ -33,7 +33,7 @@ if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
         sudo chmod +x antmant
         ./antman -S
     fi
-    cd "kernel_directory"    
+    cd "$kernel_directory"    
     export PATH="$HOME/toolchains/neutron-clang/bin:$PATH"
 fi
 # Let's make a defconfig
