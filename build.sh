@@ -65,15 +65,13 @@ make -j$(nproc --all) O=/$workspace_directory/out ARCH=arm64 CC=clang CROSS_COMP
 
 # Zipping the Image
 cd ..
-cp $script_directory/AnyKernel3/* .  
-cp out/arch/arm64/boot/Image AnyKernel3
-cd AnyKernel3
-rm -r .github
-rm .git  
-zip AnyKernel3
+mkdir -p AnyKernel3
+cp -r "$script_directory"/AnyKernel3/*   AnyKernel3/
+cp out/arch/arm64/boot/Image AnyKernel3/
+zip -r AnyKernel3.zip AnyKernel3 
 rm -r AnyKernel3
 
 # Renaming zip
 
-mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M').zip
+mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M')".zip
 
