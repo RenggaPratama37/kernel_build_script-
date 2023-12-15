@@ -65,7 +65,7 @@ make -j$(nproc --all) O=/$workspace_directory/out ARCH=arm64 CC=clang CROSS_COMP
 
 # Zipping the Image
 cd ..
-cp $script_directory/Anykernel3/ 
+cp $script_directory/Anykernel3/* .  
 cp out/arch/arm64/boot/Image Anykernel3
 cd Anykernel3
 rm -r .github
