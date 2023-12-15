@@ -63,7 +63,7 @@ cd ..
 mkdir -p AnyKernel3
 cp -r "$script_directory"/AnyKernel3/*   AnyKernel3/
 cp out/arch/arm64/boot/Image AnyKernel3/
-zip -r AnyKernel3.zip AnyKernel3 
+zip -r AnyKernel3.zip/* AnyKernel3 
 
 # Renaming zip
 mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M')".zip
