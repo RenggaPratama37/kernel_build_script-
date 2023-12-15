@@ -41,7 +41,7 @@ if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
         mkdir -p "$HOME/toolchains/neutron-clang"
         cd "$HOME/toolchains/neutron-clang"
         curl -LO "https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman"
-        sudo chmod +x antmant
+        sudo chmod +x antman
         ./antman -S
     fi
     cd "$kernel_directory"    
