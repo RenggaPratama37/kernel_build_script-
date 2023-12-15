@@ -5,11 +5,6 @@ script_directory="$(pwd)"
 cd ..
 workspace_directory="$(pwd)"
 
-# Remove previous build if available
-if [ -d "$out"]; then
-    echo "Deleting previous build"
-    rm -r "$out" 
-fi    
 # Let's enter the directory
 echo "Enter kernel_xiaomi_lime"   
 cd kernel_xiaomi_lime
@@ -69,9 +64,11 @@ mkdir -p AnyKernel3
 cp -r "$script_directory"/AnyKernel3/*   AnyKernel3/
 cp out/arch/arm64/boot/Image AnyKernel3/
 zip -r AnyKernel3.zip AnyKernel3 
-rm -r AnyKernel3
 
 # Renaming zip
-
 mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M')".zip
 
+# Clean up file after building
+
+rm -r AnyKernel3
+rm -r "$workspace_directory"/out
