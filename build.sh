@@ -43,6 +43,7 @@ if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
         curl -LO "https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman"
         sudo chmod +x antman
         ./antman -S
+        ./antman --patch=glibc
     fi
     cd "$kernel_directory"    
     export PATH="$HOME/toolchains/neutron-clang/bin:$PATH"
