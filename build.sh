@@ -13,7 +13,7 @@ kernel_directory="$(pwd)"
 # Compile Preparation
     cd "$HOME"
 # Checking packages
-    packages=("bc" "flex" "zstd" "libarchive-tools" "gcc-aarch64-linux-gnu")
+    packages=("bc" "flex" "zstd" "libarchive-tools" "gcc-aarch64-linux-gnu" "make")
     for package in "${packages[@]}" ; do
         if dpkg -s "$package" &> /dev/null; then
             echo "$package has been installed"
