@@ -50,3 +50,5 @@ cd "$workspace_directory"
 mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M').zip"
 
 # Clean up file after building
+rm -r out
+rm -r AnyKernel3
