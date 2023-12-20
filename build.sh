@@ -13,7 +13,7 @@ kernel_directory="$(pwd)"
 # Compile Preparation
     cd "$HOME"
 # Checking packages
-    packages=("bc" "flex" "zstd" "libarchive-tools")
+    packages=("bc" "flex" "zstd" "libarchive-tools" "gcc-aarch64=linux-gnu")
     for package in "${packages[@]}" ; do
         if dpkg -s "$package" &> /dev/null; then
             echo "$package has been installed"
@@ -50,6 +50,11 @@ else
     echo "Invalid Option"            
 fi
 done
+
+# export everything
+export ARCH=arm64
+export CROSS_COMPILE=aarch64-linux-gnu-
+export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 
 # Let's make a defconfig
 echo "importing defconfig"
