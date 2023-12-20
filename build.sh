@@ -22,35 +22,8 @@ kernel_directory="$(pwd)"
             sudo apt install -y "$package"
         fi
     done                 
-
-
-# Option Neutron clang as a Custom Clang Compile
-while true; do
-read -p "Do you want to use Neutron Clang as compiler? (y/n):" response
-if [ "$response" == "y" ]  || [ "$response" == "Y" ]; then
-    echo "Preparing Neutron Clang Environtment..."
-    if [ -d "$HOME/toolchains/neutron-clang" ]; then
-        echo "Neutron clang has been installed"
-    else
-        echo "Installing Neutron Clang"         
-        mkdir -p "$HOME/toolchains/neutron-clang"
-        cd "$HOME/toolchains/neutron-clang"
-        curl -LO "https://raw.githubusercontent.com/Neutron-Toolchains/antman/main/antman"
-        sudo chmod +x antman
-        ./antman -S
-        ./antman --patch=glibc
-    fi
-    cd "$kernel_directory"    
-    export PATH="$HOME/toolchains/neutron-clang/bin:$PATH"
-    break
-elif [ "$response" == "n" ]  || [ "$response" == "N" ]; then
-    cd "$kernel_directory"
-    break
-else 
-    echo "Invalid Option"            
-fi
-done
-
+    cd $kernel_directory
+    
 # export everything
 export ARCH=arm64
 export CROSS_COMPILE=aarch64-linux-gnu-
