@@ -35,7 +35,7 @@ make O=/$workspace_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
 
 # Let's start the build
 make -j$(nproc --all) O=/$workspace_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
-
+ 
 # Zipping the Image
 cd "$workspace_directory"
 mkdir -p AnyKernel3
@@ -47,8 +47,10 @@ mv AnyKernel3.zip ..
 cd "$workspace_directory"
 
 # Renaming zip
+echo "renaming zip"
 mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M').zip"
 
 # Clean up file after building
+echo "cleaning file after build completed" 
 rm -r out
 rm -r AnyKernel3
