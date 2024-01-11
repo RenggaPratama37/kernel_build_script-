@@ -31,26 +31,26 @@ export CROSS_COMPILE_ARM32=arm-linux-gnueabi-
 
 # Let's make a defconfig
 echo "importing defconfig"
-make O=/$workspace_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
+make O=/$script_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
 
 # Let's start the build
-make -j$(nproc --all) O=/$workspace_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+make -j$(nproc --all) O=/$script_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
  
 # Zipping the Image
-cd "$workspace_directory"
-mkdir -p AnyKernel3
-cp -r "$script_directory"/AnyKernel3/* AnyKernel3/
-cp out/arch/arm64/boot/Image AnyKernel3/
-cd AnyKernel3
-zip -r AnyKernel3.zip *
-mv AnyKernel3.zip ..
-cd "$workspace_directory"
+cd "$script_directory"
+mkdir -p kernel
+cp -r "$script_directory"/AnyKernel3/* kernel/
+cp out/arch/arm64/boot/Image kernel/
+cd kernel
+zip -r kernel *
 
 # Renaming zip
 echo "renaming zip"
-mv AnyKernel3.zip "renium_$(date '+%d%m%y%H%M').zip"
+mv kernel.zip $script_directory
+cd $script_directory
+mv kernel.zip "renium_$(date '+%d%m%y%H%M').zip"
 
 # Clean up file after building
 echo "cleaning file after build completed" 
 rm -r out
-rm -r AnyKernel3
+rm -r kernel
