@@ -34,7 +34,7 @@ echo "importing defconfig"
 make O=/$script_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
 
 # Let's start the build
-make -j$(nproc --all) O=/$script_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi-
+make -j$(nproc --all) O=/$script_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LLVM=1 LLVM_IAS=1
  
 # Zipping the Image
 cd "$script_directory"
