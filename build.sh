@@ -35,22 +35,28 @@ make O=/$script_directory/out ARCH=arm64 vendor/bengal-perf_defconfig
 
 # Let's start the build
 make -j$(nproc --all) O=/$script_directory/out ARCH=arm64 CC=clang CROSS_COMPILE=aarch64-linux-gnu- CROSS_COMPILE_ARM32=arm-linux-gnueabi- LLVM=1 LLVM_IAS=1
- 
-# Zipping the Image
-cd "$script_directory"
-mkdir -p kernel
-cp -r "$script_directory"/AnyKernel3/* kernel/
-cp out/arch/arm64/boot/Image kernel/
-cd kernel
-zip -r kernel *
 
-# Renaming zip
-echo "renaming zip"
-mv kernel.zip $script_directory
-cd $script_directory
-mv kernel.zip "renium_$(date '+%d%m%y%H%M').zip"
+if [ -f "$script_directory/out/arch/arm64/boot/Image.gz" ];
+then
+    # Zipping the Image
+    cd "$script_directory"
+    mkdir -p kernel
+    cp -r "$script_directory"/AnyKernel3/* kernel/
+    cp out/arch/arm64/boot/Image kernel/
+    cd kernel
+    zip -r kernel *
 
-# Clean up file after building
-echo "cleaning file after build completed" 
-rm -r out
-rm -r kernel
+    # Renaming zip
+    echo "renaming zip"
+    mv kernel.zip $script_directory
+    cd $script_directory
+    mv kernel.zip "renium_$(date '+%d%m%y%H%M').zip"
+
+    # Clean up file after building
+    echo "cleaning file after build completed"
+    rm -r out
+    rm -r kernel
+else
+    echo "Build Failed"
+    cd $script_directory
+fi
