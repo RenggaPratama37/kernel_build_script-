@@ -78,8 +78,8 @@ then
 
     # Clean up file after building
     echo "cleaning file after build completed"
-    #rm -r out
-    #rm -r kernel
+    rm -r out
+    rm -r kernel
 else
     echo "Build Failed"
     cd $script_directory
